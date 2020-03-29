@@ -23,6 +23,13 @@ module.exports = {
           const ongs = await connection('ongs').select('*');
       
           return response.json({ongs});
+      },
+
+      async delete (request, response) {
+          const { id } = request.params;
+          await connection('ongs').where('id', id).delete();
+          return response.status(204).send();
+
       }
 
 };
